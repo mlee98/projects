@@ -1,0 +1,44 @@
+<ul class="list-group">
+  <li class="list-group-item bg-light">
+    Phone numbers
+  </li>
+  <li class="list-group-item"
+      *ngFor="let phone of phoneNumbers">
+    {{ phone.number }}
+    <span class="badge badge-primary float-right">
+      {{ phone.type }}
+    </span>
+  </li>
+  <li class="list-group-item">
+    <div class="input-group">
+      <div class="input-group-btn">
+        <div class="dropdown">
+          <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+            {{ newPhone.type || '-SELECT-' }}<span class="caret"></span>
+          </button>
+          <ul class="dropdown-menu">
+            <li class="dropdown-item"
+                *ngFor="let type of ['home', 'mobile', 'fax', 'work']"
+                (click)="newPhone.type = type">
+              <a href="javascript:void(0);">
+                {{ type }}
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <input type="text"
+             class="form-control"
+             placeholder="Add phone..."
+             [(ngModel)]="newPhone.number">
+      <span class="input-group-btn">
+        <button class="btn btn-info"
+                type="button"
+                (click)="addPhone()"
+                [disabled]="!newPhone.type || !newPhone.number">
+          Add
+        </button>
+      </span>
+    </div>
+  </li>
+</ul>

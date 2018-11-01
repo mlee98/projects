@@ -1,0 +1,68 @@
+<div class="container" *ngIf="account">
+  <h1>Account Editor</h1>
+  <div class="row">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          Account Information
+        </div>
+        <div class="card-body">
+          <div class="form-group">
+            <label for="account_name">
+              Name
+            </label>
+            <input type="text"
+                  id="account_name"
+                  class="form-control"
+                  [ngModel]="account.name"
+                  (ngModelChange)="account.name = $event" />
+          </div>
+          <div class="form-group">
+            <label for="account_email">
+              Email
+            </label>
+            <input
+              type="email"
+              id="account_email"
+              class="form-control"
+              [(ngModel)]="account.email" />
+          </div>
+          <br />
+          <div class="form-group">
+            <label for="account_isEmployee">
+              <input type="checkbox"
+              id="account_isEmployee"
+              [(ngModel)]="account.isEmployee" /> Employee
+            </label>
+          </div>
+          <div class="form-group">
+            <label for="account_departmentId">
+              Department
+            </label>
+            <select
+              id="account_departmentId"
+              class="form-control"
+              [(ngModel)]="account.departmentId">
+              <option></option>
+              <option
+                [value]="department.id"
+                *ngFor="let department of departments">
+                {{ department.name }}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <br />
+      <app-phone-list [phoneNumbers]='account.phoneNumbers'></app-phone-list>
+      <br />
+      <button class="btn btn-lg btn-success btn-block" (click)='save()' type="button">
+        Save
+      </button>
+    </div>
+    <div class="col-md-4">
+      <pre>{{account|json}}</pre>
+    </div>
+  </div>
+</div>
+<br />
