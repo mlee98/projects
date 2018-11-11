@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Department, Phone, AccountsRepository, Account } from '../../domain';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   templateUrl: './account-editor.component.html',
@@ -13,7 +13,8 @@ export class AccountEditorComponent implements OnInit {
 
   constructor(
     private accountsRepository: AccountsRepository,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -39,14 +40,12 @@ export class AccountEditorComponent implements OnInit {
   }
 
   save() {
+    const onSave = () => this.router.navigateByUrl('accounts');
     if (this.account.id) {
-      this.accountsRepository.update(this.account.id, this.account).subscribe();
+      this.accountsRepository.update(this.account.id, this.account).subscribe(onSave);
 
     } else {
-      this.accountsRepository.add(this.account).subscribe();
+      this.accountsRepository.add(this.account).subscribe(onSave);
     }
   }
-
-
-
 }

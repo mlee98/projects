@@ -5,6 +5,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { PhoneListComponent } from './phone-list/phone-list.component';
 import { RouterModule } from '@angular/router';
 import { ACCOUNTS_ROUTES } from './accounts-routes';
+import { AccountListComponent } from './account-list/account-list.component';
 
 @NgModule({
   imports: [
@@ -14,7 +15,8 @@ import { ACCOUNTS_ROUTES } from './accounts-routes';
   ],
   declarations: [
     AccountEditorComponent,
-    PhoneListComponent
+    PhoneListComponent,
+    AccountListComponent
   ],
   exports: [
     AccountEditorComponent

@@ -56,9 +56,10 @@
       <br />
       <app-phone-list [phoneNumbers]='account.phoneNumbers'></app-phone-list>
       <br />
-      <button class="btn btn-lg btn-success btn-block" (click)='save()' type="button">
+      <button class="btn btn-lg btn-success btn-block" (click)='save(); account = {};' type="button">
         Save
       </button>
+      <a class="btn btn-lg btn-secondary btn-block" routerLink="..">Return To List</a>
     </div>
     <div class="col-md-4">
       <pre>{{account|json}}</pre>

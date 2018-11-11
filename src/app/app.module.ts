@@ -16,7 +16,9 @@ import { AccountsModule } from './accounts/accounts.module';
     BrowserModule,
     HttpClientModule,
     AccountsModule,
-    RouterModule.forRoot([])
+    RouterModule.forRoot([
+      { path : '', redirectTo: 'accounts', pathMatch: 'full'}
+    ])
   ],
   providers: [
     AccountsRepository

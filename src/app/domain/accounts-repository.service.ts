@@ -12,7 +12,7 @@ export class AccountsRepository {
   protected httpOptions = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'johnlawrimore'
+      'Authorization': 'mlee'
     })
   };
 
@@ -23,6 +23,18 @@ export class AccountsRepository {
   getById(id: number): Observable<Account> {
     return this.httpClient
       .get<Account>(`${this.endPoint}/${id}`, this.httpOptions)
+      .pipe(catchError(this.handleException));
+  }
+
+  deleteById(id: number): Observable<void> {
+    return this.httpClient
+      .delete<void>(`${this.endPoint}/${id}`, this.httpOptions)
+      .pipe(catchError(this.handleException));
+  }
+
+  getAccounts(): Observable<Account[]> {
+    return this.httpClient
+      .get<Account[]>(`${this.endPoint}`, this.httpOptions)
       .pipe(catchError(this.handleException));
   }
 
