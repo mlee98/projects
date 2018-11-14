@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Department, Phone, AccountsRepository, Account } from '../../domain';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Department, AccountsRepository, Account } from '../../domain';
 import { ActivatedRoute, Router } from '@angular/router';
+import { PhoneListComponent } from '../phone-list/phone-list.component';
 
 @Component({
   templateUrl: './account-editor.component.html',
@@ -10,6 +11,9 @@ export class AccountEditorComponent implements OnInit {
 
   account: Account;
   departments: Department[];
+
+  @ViewChild('phoneList')
+  phoneList: PhoneListComponent;
 
   constructor(
     private accountsRepository: AccountsRepository,
@@ -40,6 +44,12 @@ export class AccountEditorComponent implements OnInit {
   }
 
   save() {
+
+    if (this.phoneList.newPhone.number) {
+      alert('Incomplete Phone Number');
+      return;
+    }
+
     const onSave = () => this.router.navigateByUrl('accounts');
     if (this.account.id) {
       this.accountsRepository.update(this.account.id, this.account).subscribe(onSave);
@@ -48,4 +58,9 @@ export class AccountEditorComponent implements OnInit {
       this.accountsRepository.add(this.account).subscribe(onSave);
     }
   }
+
+  onEventOccured(error: string) {
+    alert(error);
+  }
+
 }

@@ -6,12 +6,14 @@ import { PhoneListComponent } from './phone-list/phone-list.component';
 import { RouterModule } from '@angular/router';
 import { ACCOUNTS_ROUTES } from './accounts-routes';
 import { AccountListComponent } from './account-list/account-list.component';
+import { SharedModule } from '../shared';
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    RouterModule.forChild(ACCOUNTS_ROUTES)
+    RouterModule.forChild(ACCOUNTS_ROUTES),
+    SharedModule
   ],
   declarations: [
     AccountEditorComponent,

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, EventEmitter, Output } from '@angular/core';
 import { Phone } from '../../domain';
 
 @Component({
@@ -11,6 +11,9 @@ export class PhoneListComponent implements OnInit {
   @Input()
   phoneNumbers: Phone[];
 
+  @Output()
+  validationError = new EventEmitter<string>();
+
   newPhone: Phone = {};
 
   constructor() { }
@@ -19,8 +22,23 @@ export class PhoneListComponent implements OnInit {
   }
 
   addPhone() {
-    this.phoneNumbers.push(this.newPhone);
-    this.newPhone = {};
+    let valid = true;
+    if (!this.newPhone.type) {
+      // type not selected
+      this.validationError.emit('Type Not Selected');
+      valid = false;
+    }
+
+    if (!this.newPhone.number) {
+      // type not selected
+      this.validationError.emit('Number Not Provided');
+      valid = false;
+    }
+
+    if (valid) {
+      this.phoneNumbers.push(this.newPhone);
+      this.newPhone = {};
+    }
   }
 
 }
