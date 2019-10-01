@@ -1,0 +1,78 @@
+Module                  Size  Used by
+cfg80211              811008  0
+rfkill                 28672  2 cfg80211
+8021q                  40960  0
+garp                   16384  1 8021q
+mrp                    20480  1 8021q
+stp                    16384  1 garp
+llc                    16384  2 stp,garp
+vmwgfx                335872  1
+ttm                   114688  1 vmwgfx
+drm_kms_helper        212992  1 vmwgfx
+snd_intel8x0           49152  0
+hid_generic            16384  0
+snd_ac97_codec        151552  1 snd_intel8x0
+drm                   495616  4 vmwgfx,drm_kms_helper,ttm
+usbhid                 65536  0
+intel_powerclamp       20480  0
+ac97_bus               16384  1 snd_ac97_codec
+joydev                 28672  0
+crct10dif_pclmul       16384  1
+ghash_clmulni_intel    16384  0
+hid                   143360  2 usbhid,hid_generic
+snd_pcm               135168  2 snd_intel8x0,snd_ac97_codec
+mousedev               24576  0
+psmouse               176128  0
+snd_timer              40960  1 snd_pcm
+intel_rapl_perf        16384  0
+input_leds             16384  0
+snd                   102400  4 snd_intel8x0,snd_timer,snd_ac97_codec,snd_pcm
+syscopyarea            16384  1 drm_kms_helper
+sysfillrect            16384  1 drm_kms_helper
+sysimgblt              16384  1 drm_kms_helper
+fb_sys_fops            16384  1 drm_kms_helper
+pcspkr                 16384  0
+soundcore              16384  1 snd
+i2c_piix4              28672  0
+evdev                  20480  3
+vboxguest              45056  0
+mac_hid                16384  0
+battery                24576  0
+ac                     16384  0
+pkcs8_key_parser       16384  0
+ip_tables              32768  0
+x_tables               49152  1 ip_tables
+overlay               131072  1
+squashfs               69632  1
+loop                   36864  2
+isofs                  49152  1
+sr_mod                 28672  1
+cdrom                  73728  1 sr_mod
+sd_mod                 57344  0
+ata_generic            16384  0
+pata_acpi              16384  0
+crc32_pclmul           16384  0
+crc32c_intel           24576  0
+ahci                   40960  0
+libahci                40960  1 ahci
+ata_piix               36864  1
+serio_raw              20480  0
+atkbd                  36864  0
+libps2                 20480  2 atkbd,psmouse
+aesni_intel           372736  0
+ohci_pci               20480  0
+libata                274432  5 ata_piix,libahci,ahci,pata_acpi,ata_generic
+aes_x86_64             20480  1 aesni_intel
+crypto_simd            16384  1 aesni_intel
+ehci_pci               20480  0
+intel_agp              24576  0
+cryptd                 28672  3 crypto_simd,ghash_clmulni_intel,aesni_intel
+glue_helper            16384  1 aesni_intel
+intel_gtt              24576  1 intel_agp
+scsi_mod              249856  3 sd_mod,libata,sr_mod
+ehci_hcd               98304  1 ehci_pci
+ohci_hcd               57344  1 ohci_pci
+e1000                 155648  0
+agpgart                53248  4 intel_agp,intel_gtt,ttm,drm
+i8042                  32768  0
+serio                  28672  6 serio_raw,atkbd,psmouse,i8042
